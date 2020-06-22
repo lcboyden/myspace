@@ -20,12 +20,12 @@ export class AuthProvider extends React.Component {
 
   handleLogin = (user, history) => {
     axios.post("/api/auth/sign_in", user)
-      .then( (res) => {
+      .then( res => {
         this.setState({ user: res.data.data, });
         history.push("/");
       })
-      .catch( (err) => {
-        console.log(err);
+      .catch( res => {
+        console.log(res);
       })
   }
 
@@ -35,8 +35,8 @@ export class AuthProvider extends React.Component {
         this.setState({ user: null, });
         history.push('/login');
       })
-      .catch( (err) => {
-        console.log(err);
+      .catch( res => {
+        console.log(res);
       })
   }
 
