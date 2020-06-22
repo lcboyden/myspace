@@ -11,9 +11,6 @@ const NavBar = () => {
       <Link to="/demo">
         <Menu.Item>Components Demo</Menu.Item>
       </Link>
-      <Link to="/products">
-        <Menu.Item>Products</Menu.Item>
-      </Link>
     </Menu>
   );
 };
