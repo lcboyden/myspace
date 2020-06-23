@@ -1,10 +1,12 @@
-100.times do
-  Product.create(
-    name: Faker::Commerce.product_name,
-    description: Faker::Lorem.sentence,
-    price: Faker::Commerce.price.to_f,
-    department: Faker::Commerce.department,
+Patron.destroy_all
+
+25.times do
+  Patron.create(
+    name: Faker::TvShows::GameOfThrones.character,
+    quote: Faker::TvShows::GameOfThrones.quote,
+    house: Faker::TvShows::GameOfThrones.house,
+    city: Faker::TvShows::GameOfThrones.city,
   )
 end
 
-puts "100 Products Seeded"
+puts "25 patrons seeded"
