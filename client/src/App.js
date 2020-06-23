@@ -7,19 +7,23 @@ import NoMatch from "./screens/NoMatch";
 import NavBar from "./components/NavBar";
 import Login from './components/Login';
 import Register from './components/Register';
+import FetchUser from './components/FetchUser';
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
     <>
-      <NavBar />
-      <Container>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <Route exact component={NoMatch} />
-        </Switch>
-      </Container>
+    <NavBar />
+      <FetchUser>
+        <Container>
+          <Switch>
+            <ProtectedRoute exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <Route exact component={NoMatch} />
+          </Switch>
+        </Container>
+      </FetchUser>
     </>
   );
 }
