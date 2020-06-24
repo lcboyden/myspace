@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   serialize :liked_patrons, Array
+  has_many :posts
 
   def self.random_patron(ids)
     ids = ids.empty? ? [0] : ids

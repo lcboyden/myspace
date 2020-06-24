@@ -66,7 +66,7 @@ class Home extends React.Component {
               </Button>
             </Card.Content>
           </Card>
-          <Link to="/my_friends">
+          <Link to="/friends">
             <Button color="blue">
               My Friends
             </Button>
