@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function Posts(props) {
+export default function Posts (props) {
   const [myPosts, setMyPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
   const [users, setUsers] = useState([]);

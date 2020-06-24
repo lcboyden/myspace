@@ -3,11 +3,13 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
     resources :patrons, only: [:index, :show, :update]
-    get "friends", to: "patrons#friends"
-    get "all_posts", to: "cats#all_posts"
-    get "my_posts", to: "cats#my_posts"
-    get "all_users", to: "cats#all_users"
-    get "get_current_user", to: "cats#get_current_user"
-    get "users_and_posts", to: "cats#users_and_posts"
+      get "friends", to: "patrons#friends"
+      get "all_posts", to: "patrons#all_posts"
+      get "my_posts", to: "patrons#my_posts"
+      get "all_users", to: "patrons#all_users"
+      get "get_current_user", to: "patrons#get_current_user"
+      get "users_and_posts", to: "patrons#users_and_posts"
+    resources :posts
+      # get "custom_posts", to: "posts#index"
   end
 end
