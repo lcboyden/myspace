@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import PostForm from "./PostForm";
 
 export default function Posts (props) {
   const [myPosts, setMyPosts] = useState([]);
@@ -26,38 +27,56 @@ export default function Posts (props) {
     setUserPosts(res4.data);
   }
 
+  const addPost = (post) => {
+     axios.post(`/api/user/${currentUser.id}/posts`, post)
+       .then(res => {
+      //  update front-end
+        setMyPosts([res.data, ...myPosts])
+       })
+   }
+
   return (
     <div>
       Current User <p>email:{currentUser.email} id: {currentUser.id}{" "}</p>
       Users:
       <br />
-      {users.map((u) => (
-        <p key={`u-${u.id}`}>
-          email: {u.email} user id: {u.id}
-        </p>
-      ))}
+        {users.map((u) => (
+          <p key={`u-${u.id}`}>
+            email: {u.email} user id: {u.id}
+          </p>
+        ))}
       <hr />
-      All Posts:
+      {/* All Posts:
       {allPosts.map((p) => (
         <p key={`ap-${p.id}`}>
           post: {p.title}, user_id:{p.user_id}
         </p>
-      ))}
-      <br />
-      My Posts:
+      ))} */}
+
+      <h2>My Posts:</h2>
       {myPosts.map((p) => (
-        <p key={`aps-${p.id}`}>
-          post: {p.title}, user_id:{p.user_id}
-        </p>
+        <div key={`aps-${p.id}`}>
+          <ul>
+            <li>{p.title}</li>
+              <ul>
+                <li>{p.body}</li>
+                <li>user_id:{p.user_id}</li>
+              </ul>
+          </ul>
+        </div>
       ))}
       <hr />
-      User Post:
+      {/* User Post:
       {userPosts.map((p) => (
         <p key={`apus`}>
           post: {p.title}, email:{p.email}
         </p>
       ))}
-      <hr />
+      <hr /> */}
+
+      <PostForm 
+        addPost={addPost}
+      />
     </div>
   );
 }

@@ -9,7 +9,9 @@ Rails.application.routes.draw do
       get "all_users", to: "patrons#all_users"
       get "get_current_user", to: "patrons#get_current_user"
       get "users_and_posts", to: "patrons#users_and_posts"
-    resources :posts
+    resources :user do 
+      resources :posts
+    end
       # get "custom_posts", to: "posts#index"
   end
 end
