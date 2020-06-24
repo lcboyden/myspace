@@ -8,7 +8,8 @@ const PostForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     props.addPost({title: title, body: body}) 
-    // const addPost = (post) => {
+    setTitle("");
+    setBody("");
   }
 
   return (

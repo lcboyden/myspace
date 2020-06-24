@@ -4,10 +4,10 @@ import PostForm from "./PostForm";
 
 export default function Posts (props) {
   const [myPosts, setMyPosts] = useState([]);
-  const [allPosts, setAllPosts] = useState([]);
+  // const [allPosts, setAllPosts] = useState([]);
   const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
-  const [userPosts, setUserPosts] = useState([]);
+  // const [userPosts, setUserPosts] = useState([]);
 
   useEffect(() => {
     getData();
@@ -16,15 +16,15 @@ export default function Posts (props) {
   async function getData() {
     const res = await axios.get("/api/my_posts");
     setMyPosts(res.data);
-    const res1 = await axios.get("/api/all_posts");
-    setAllPosts(res1.data);
+    // const res1 = await axios.get("/api/all_posts");
+    // setAllPosts(res1.data);
     const res2 = await axios.get("/api/all_users");
     setUsers(res2.data);
     const res3 = await axios.get("/api/get_current_user");
     setCurrentUser(res3.data);
-    const res4 = await axios.get("/api/users_and_posts");
-    console.log(res4.data);
-    setUserPosts(res4.data);
+    // const res4 = await axios.get("/api/users_and_posts");
+    // console.log(res4.data);
+    // setUserPosts(res4.data);
   }
 
   const addPost = (post) => {
@@ -33,6 +33,13 @@ export default function Posts (props) {
       //  update front-end
         setMyPosts([res.data, ...myPosts])
        })
+   }
+
+   const removePost = (id) => {
+     axios.delete(`/api/user/${currentUser.id}/posts/${id}`)
+      .then( res => {
+        setMyPosts(myPosts.filter(p => p.id !== id) )
+      });
    }
 
   return (
@@ -63,6 +70,7 @@ export default function Posts (props) {
                 <li>user_id:{p.user_id}</li>
               </ul>
           </ul>
+          <button onClick={() => removePost(p.id)}>delete</button>
         </div>
       ))}
       <hr />
