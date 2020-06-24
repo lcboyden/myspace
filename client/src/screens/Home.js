@@ -35,7 +35,7 @@ class Home extends React.Component {
       return (
         <div>
           <br />
-          <Header as='h1'>GoT MySpace</Header>
+          <Header as='h1'>Choose Your Friends</Header>
           <br />
           <Card key={patron.id}>
             <Card.Content>
