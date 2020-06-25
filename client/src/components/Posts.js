@@ -42,6 +42,18 @@ export default function Posts (props) {
       });
    }
 
+   const editPost = (id) => {
+     axios.put(`/api/user/${currentUser.id}/posts/${id}`)
+     .then ( res => {
+      setMyPosts(myPosts.map(p => {
+        if (p.id === id)
+          return res.data; 
+        return p;
+      }));
+      setMyPosts([res.data, ...myPosts])
+     })
+   }
+
   return (
     <div>
       Current User <p>email:{currentUser.email} id: {currentUser.id}{" "}</p>
@@ -70,6 +82,7 @@ export default function Posts (props) {
                 <li>user_id:{p.user_id}</li>
               </ul>
           </ul>
+          <button onClick={() => editPost(p.id)}>edit</button>
           <button onClick={() => removePost(p.id)}>delete</button>
         </div>
       ))}
@@ -81,9 +94,9 @@ export default function Posts (props) {
         </p>
       ))}
       <hr /> */}
-
       <PostForm 
         addPost={addPost}
+        editPost={editPost}
       />
     </div>
   );

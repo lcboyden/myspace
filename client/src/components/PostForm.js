@@ -6,10 +6,14 @@ const PostForm = (props) => {
   const [ body, setBody ] = useState("")
  
   const handleSubmit = (e) => {
+    if (props.id) {
+      props.editPost(props.id, {title: title, body: body})
+    } else {
     e.preventDefault()
     props.addPost({title: title, body: body}) 
     setTitle("");
     setBody("");
+    }
   }
 
   return (
